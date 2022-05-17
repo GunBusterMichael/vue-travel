@@ -38,6 +38,19 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  /*
+    因为要在局部组件中修改第三方组件库 VueAwesomeSwiper 的样式，所以要进行样式穿透 >>>
+
+    小圆点所处的 <div class="swiper-pagination" slot="pagination"></div> 是 Swiper 组件的子组件，
+
+    .swiper-pagination-bullet-active 是子组件的属性。
+
+    但由于 scoped，导致当前样式只能用于当前 Swiper 组件中，无法用于包括子组件在内的其他组件。
+
+    在使用穿透 >>> 后，Swiper 中的特定样式就能被运用在子组件之中。
+
+    <!-- ! 注意：允许穿透的样式会被穿透到所有子组件中。
+  */
   .wrapper >>> .swiper-pagination-bullet-active
     background-color #fff
   .wrapper
