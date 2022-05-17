@@ -51,8 +51,12 @@ export default {
 
     <!-- ! 注意：允许穿透的样式会被穿透到所有子组件中。
   */
+  // 修改当前被轮播到的图片，所对应的小圆点的颜色
   .wrapper >>> .swiper-pagination-bullet-active
-    background-color #fff
+    background-color #ff6669
+  // 修改小圆点的位置
+  .wrapper >>> .swiper-pagination
+    bottom: .1rem
   .wrapper
     overflow: hidden
     width 100%  // 将 wrapper 的宽度设置为整个页面的宽度
