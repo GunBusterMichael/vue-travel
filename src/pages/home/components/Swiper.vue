@@ -1,8 +1,9 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
+    <!-- 如果 list 不为空数组（即请求到了轮播图数据），则显示轮播图 -->
+    <swiper :options="swiperOption" v-if="showSwiper">
       <!-- slides -->
-      <swiper-slide v-for="item of swiperList" :key="item.id">
+      <swiper-slide v-for="item of list" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl" alt="slide pic">
       </swiper-slide>
       <!-- Optional controls -->
@@ -14,6 +15,9 @@
 <script>
 export default {
   name: "HomeSwiper",
+  props: {
+    list: Array
+  },
   data() {
     return {
       swiperOption: {
@@ -24,14 +28,11 @@ export default {
         // 自动播放
         autoplay: 3000,
       },
-      // 设置轮播图列表
-      swiperList: [{
-        id: '0001',
-        imgUrl: 'https://imgs.qunarzz.com/vs_ceph_vcimg/5be2601d1f921f166646b817459a2727.jpeg'
-      }, {
-        id: '0002',
-        imgUrl: 'https://ad-dapp-osscp.qunarzz.com/ad_dapp_oss_oper/7603042338b1215e3e8c5a32fce67933.jpg'
-      }]
+    }
+  },
+  computed: {
+    showSwiper () {
+      return this.list.length
     }
   }
 };
@@ -53,7 +54,7 @@ export default {
   */
   // 修改当前被轮播到的图片，所对应的小圆点的颜色
   .wrapper >>> .swiper-pagination-bullet-active
-    background-color #ff6669
+    background-color #fff
   // 修改小圆点的位置
   .wrapper >>> .swiper-pagination
     bottom: .1rem

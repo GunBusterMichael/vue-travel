@@ -3,7 +3,7 @@
     <div class="title">热销推荐</div>
 
     <ul>
-      <li class="item border-bottom" v-for="item in recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item in list" :key="item.id">
         <img class="item-img" :src="item.imgUrl" alt="">
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
@@ -18,26 +18,9 @@
 <script>
   export default {
     name: "HomeRecommend",
-    data () {
-      return {
-        recommendList: [{
-          id: '0001',
-          imgUrl: 'https://img1.qunarzz.com/travel/poi/1604/5c/e924b85f5c340f7.jpg',
-          title: '石家庄苍岩山风景区',
-          desc: '电影中的世外桃源'
-        }, {
-          id: '0002',
-          imgUrl: 'https://img1.qunarzz.com/travel/poi/1604/5c/e924b85f5c340f7.jpg',
-          title: '石家庄苍岩山风景区',
-          desc: '电影中的世外桃源'
-        }, {
-          id: '0003',
-          imgUrl: 'https://img1.qunarzz.com/travel/poi/1604/5c/e924b85f5c340f7.jpg',
-          title: '石家庄苍岩山风景区',
-          desc: '电影中的世外桃源'
-        }]
-      }
-    }
+    props: {
+      list: Array
+    },
   }
 </script>
 
@@ -64,6 +47,9 @@
       flex: 1
       padding $recommendItemPadding
       min-width 0  // 此样式配合 ellipsis() 才能让文字溢出后显示 ...
+      display: flex
+      flex-direction: column
+      justify-content: space-between
 
       .item-title
         line-height .54rem
@@ -79,7 +65,8 @@
         background: #ff9300
         color #fff
         border-radius: .1rem
-        padding: .05rem
+        padding: .03rem .1rem .03rem .1rem
         margin-top .15rem
         line-height: .44rem
+        width: 1.6rem
 </style>
