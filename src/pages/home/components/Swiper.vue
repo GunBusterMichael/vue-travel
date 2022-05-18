@@ -61,7 +61,7 @@ export default {
     overflow: hidden
     width 100%  // 将 wrapper 的宽度设置为整个页面的宽度
     height 0  // 高度的百分比以父级元素为准
-    padding-bottom 30.47%  // 底部 padding 的高度为 width 的 30.47%，即图片高度/宽度
+    padding-bottom 30.47%  // 底部 padding 的高度为 .wrapper 宽度（即页面宽度）的 30.47%，即图片高度/宽度
     .swiper-img
       width 100%
 </style>

@@ -91,7 +91,9 @@ export default {
   /*
     利用 padding-bottom 设置盒子高度，
     子盒子可以显示在 padding 中。
-    设置 height: 0 防止子盒子撑开父盒子
+    设置 height: 0 防止子盒子撑开父盒子，
+    同时默认 box-sizing为content-box，
+    所以 padding 值可以生效。
   */
   overflow: hidden;
   height: 0;
@@ -114,7 +116,7 @@ export default {
       /* 让包裹 icon 图标的 div 下边框距离 icon 下边框 .44rem，为下方文字预留空间 */
       bottom: $iconDescHeight;
       box-sizing: border-box;
-      padding: 0.3rem; // 设置图片间距
+      padding: $spacing; // 设置图片间距
       padding-bottom 0
 
       .icon-img-content
