@@ -1,15 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/home/Home.vue'
+
+// 懒加载组件：用到组件时再加载相关 JS 代码
+const Home = () => import('@/pages/home/Home.vue')
+const City = () => import('@/pages/city/City.vue')
 
 Vue.use(Router)
 
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/city',
+    name: 'City',
+    component: City
+  }
+]
+
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    }
-  ]
+  routes
 })

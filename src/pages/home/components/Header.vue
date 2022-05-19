@@ -7,10 +7,12 @@
       <span class="iconfont">&#xe632;</span>
       输入城市/景点/游玩/主题
     </div>
-    <div class="header-right">
-      {{city}}
-      <span class="iconfont arrow-icon">&#xe62b;</span>
-    </div>
+    <router-link to="/city">
+      <div class="header-right">
+        {{city}}
+        <span class="iconfont arrow-icon">&#xe62b;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -30,16 +32,16 @@
   /* 1rem = html的font-size = 50px */
   .header
     display: flex
-    height: .86rem
+    height: $headerHeight
     background: $bgColor  // 引用变量
     color: #fff
-    line-height .86rem
+    line-height $headerHeight
     .header-left
       width: .64rem
       float: left
       .back-icon
         text-align center
-        font-size: .4rem
+        font-size: $backIconFontSize
     .header-input
       flex: 1
       color: #ccc
@@ -53,6 +55,7 @@
       width: 1.24rem
       float: right
       text-align: center
+      color #fff
       .arrow-icon
         font-size: .24rem
         margin-left -.02rem
