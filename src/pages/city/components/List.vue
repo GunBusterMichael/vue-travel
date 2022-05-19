@@ -31,7 +31,8 @@
       </div>
   
       <!-- 按照字母分类排序的城市列表 -->
-      <div class="area" v-for="(item, key) in cities" :key="key">
+      <!-- 通过 :ref="key" 获取同一字母开头的城市的 DOM 元素，其 name 为开头字母 -->
+      <div class="area" v-for="(item, key) in cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
           <div class="item border-bottom" v-for="innerItem in item" :key="innerItem.id">{{innerItem.name}}</div>
@@ -50,7 +51,26 @@
     name: "CityList",
     props: {
       hotCities: Array,
-      cities: Object
+      cities: Object,
+      letter: String
+    },
+    watch: {
+      /* 监听被点击的字母是否变化，实现点击字母跳转到对应城市的效果 */
+      letter () {
+        /*
+          获取被 v-for 循环创建出来的 DOM 元素后，$refs 的结构是这样的：
+          {
+            不是通过 v-for 创建的元素的name: DOM 元素,
+            不是通过 v-for 创建的元素的name: DOM 元素,
+            ...,
+            通过 v-for 创建的元素的name: [DOM 元素],
+            通过 v-for 创建的元素的name: [DOM 元素],
+            ...
+          }
+        */
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
     },
     mounted () {
       this.scroll = new Bscroll(this.$refs.wrapper)
@@ -78,7 +98,7 @@
     position absolute  // 让包裹整个组件的 div 绝对定位
     /* 利用 top right bottom left 设定绝对定位元素的宽高 */
     top $headerHeight + $searchHeight  // 顶部让出 header 和 search 的高度
-    right $alphabetWidth  // 右边留出竖状字母索引的宽度
+    right 0
     bottom 0
     left 0
 
@@ -93,7 +113,7 @@
       display: flex
       flex-wrap: wrap
       justify-content: flex-start
-      padding .1rem .6rem .1rem .1rem
+      padding .1rem .6rem .1rem .1rem  // 右边留出竖状字母索引的宽度
       /*
         botton-list 的左 padding 为 .1rem，
         botton 的左 margin 为 .1rem，
