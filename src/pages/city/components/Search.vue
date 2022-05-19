@@ -16,7 +16,7 @@
 
   .search
     background $bgColor
-    height .72rem
+    height $searchHeight
     padding: 0 .1rem
     .search-input
       box-sizing: border-box
