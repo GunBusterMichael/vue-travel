@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :list="swiperList"></home-swiper>
     <home-icons :list="iconList"></home-icons>
     <home-recommend :list="recommendList"></home-recommend>
@@ -27,7 +27,6 @@
     },
     data () {
       return {
-        city: '',
         swiperList: [],
         iconList: [],
         recommendList: [],
@@ -54,7 +53,6 @@
         */
         if (res.ret && res.data) {
           const data = res.data  // 将请求过来的，包含页面数据的 data 赋值到 data 中
-          this.city = data.city  // 为要传递到 Header 组件的数据 city 赋值
           this.swiperList = data.swiperList
           this.iconList = data.iconList
           this.recommendList = data.recommendList

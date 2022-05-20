@@ -14,6 +14,7 @@
           class="search-res-item border-bottom"
           v-for="item in resList"
           :key="item.id"
+          @click="handleCityClick(item.name)"
         >
           {{item.name}}
         </li>
@@ -115,6 +116,15 @@
           */
           this.isNoMatchingRes = this.resList.length == 0
         }, 100)
+      }
+    },
+
+    /* 实现点击城市后切换当前城市的功能 */
+    methods: {
+      handleCityClick (city) {
+        this.$store.commit('changeCity', city)
+        this.query = ''
+        this.$router.push('/')
       }
     },
 

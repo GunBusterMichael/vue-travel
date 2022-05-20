@@ -110,7 +110,6 @@ export default {
         let index = Math.floor((touchY - this.startY) / this.letterHeight);
 
         if (index >= 0 && index < this.letters.length) {
-          console.log(this.letters[index]);
           this.emitLetterChange(this.letters[index]);
         }
       }, 10);

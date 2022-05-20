@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <!-- 如果 list 不为空数组（即请求到了轮播图数据），则显示轮播图 -->
-    <swiper :options="swiperOption" v-if="showSwiper">
+    <swiper :options="swiperOption" ref="mySwiper" v-if="showSwiper">
       <!-- slides -->
       <swiper-slide v-for="item of list" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl" alt="slide pic">
@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      notNextTick: true,
       swiperOption: {
         // 让轮播图小圆点生效
         pagination: '.swiper-pagination',
@@ -27,14 +28,31 @@ export default {
         loop: true,
         // 自动播放
         autoplay: 3000,
+        autoplayDisableOnInteraction : false,
+        observer: true,
+        observeParents: true
       },
     }
   },
   computed: {
     showSwiper () {
       return this.list.length
-    }
-  }
+    },
+    swiper() {
+      return this.$refs.mySwiper.swiper
+    },
+  },
+  // activated () {
+  //   // if (this.$refs.mySwiper && this.swiper.autoplayPaused === true) {
+  //     //   this.swiper.startAutoplay()
+  //   // }
+  // },
+  // mounted: function () {
+  //   // console.log(this.swiper.autoplayPaused)
+  //   setInterval( () => {
+  //     this.swiper.slideNext();
+  //   }, 1000)
+  // },
 };
 </script>
 
