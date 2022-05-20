@@ -112,7 +112,7 @@ export default {
         if (index >= 0 && index < this.letters.length) {
           this.emitLetterChange(this.letters[index]);
         }
-      }, 10);
+      }, 8);
     },
 
     /* 当手指离开 Alphabet 时，将 Alphabet 赋值为 false */

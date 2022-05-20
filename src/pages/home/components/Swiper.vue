@@ -27,7 +27,7 @@ export default {
         // 允许循环轮播
         loop: true,
         // 自动播放
-        autoplay: 3000,
+        autoplay: 500,
         autoplayDisableOnInteraction : false,
         observer: true,
         observeParents: true
@@ -38,21 +38,24 @@ export default {
     showSwiper () {
       return this.list.length
     },
-    swiper() {
-      return this.$refs.mySwiper.swiper
-    },
   },
-  // activated () {
-  //   // if (this.$refs.mySwiper && this.swiper.autoplayPaused === true) {
-  //     //   this.swiper.startAutoplay()
-  //   // }
-  // },
-  // mounted: function () {
-  //   // console.log(this.swiper.autoplayPaused)
-  //   setInterval( () => {
-  //     this.swiper.slideNext();
-  //   }, 1000)
-  // },
+  methods: {
+    /* 解决路由跳转后，首页 swiper 不轮播的问题 */
+    refreshSwiper () {
+      if (this.$refs.mySwiper) {
+        const swiper = this.$refs.mySwiper.swiper
+        /* 重新初始化 swiper */
+        swiper.init()
+        /* 停止自动轮播 */
+        swiper.stopAutoplay()
+        /* 启动自动轮播 */
+        swiper.startAutoplay()
+      }
+    }
+  },
+  activated () {
+    this.refreshSwiper()
+  }
 };
 </script>
 

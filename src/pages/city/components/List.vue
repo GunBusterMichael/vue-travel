@@ -86,7 +86,9 @@
       }
     },
     mounted () {
-      this.scroll = new Bscroll(this.$refs.wrapper)
+      this.scroll = new Bscroll(this.$refs.wrapper, {
+        click: true  // 让 wrapper 可已被点击
+      })
     }
   }
 </script>

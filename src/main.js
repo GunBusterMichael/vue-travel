@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 // 引入 fastclick 库，解决移动端点击300ms延迟问题
-import fastClick from 'fastclick'
+// import fastClick from 'fastclick'
 // 引入能让所有手机显示效果一致的 css 文件
 import 'styles/reset.css'
 // 引入解决 1px border 问题的 css 文件
@@ -19,7 +19,7 @@ require('swiper/dist/css/swiper.css')
 
 Vue.config.productionTip = false
 // 使用 fastClick 库
-fastClick.attach(document.body)
+// fastClick.attach(document.body)
 // 使用 vue-awesome-swiper 插件
 Vue.use(VueAwesomeSwiper)
 
