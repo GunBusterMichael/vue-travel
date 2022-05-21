@@ -3,14 +3,16 @@
     <div class="title">热销推荐</div>
 
     <ul>
-      <li class="item border-bottom" v-for="item in list" :key="item.id">
-        <img class="item-img" :src="item.imgUrl" alt="">
-        <div class="item-info">
-          <p class="item-title">{{item.title}}</p>
-          <div class="item-desc">{{item.desc}}</div>
-          <button class="item-button">查看详情</button>
-        </div>
-      </li>
+      <router-link :to="'/detail/' + item.id" v-for="item in list" :key="item.id">
+        <li class="item border-bottom">
+          <img class="item-img" :src="item.imgUrl" alt="">
+          <div class="item-info">
+            <p class="item-title">{{item.title}}</p>
+            <div class="item-desc">{{item.desc}}</div>
+            <button class="item-button">查看详情</button>
+          </div>
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -54,6 +56,7 @@
       .item-title
         line-height .54rem
         font-size: .32rem
+        color $darkTextColor
         ellipsis()
 
       .item-desc

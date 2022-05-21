@@ -23,6 +23,7 @@ export default {
   data () {
     return {
       swiperOption: {
+        pagination: '.swiper-pagination',
         autoplay: false,
       }
     }
@@ -47,6 +48,12 @@ export default {
 @import '~styles/varibles.styl';
 @import '~styles/mixins.styl';
 
+/*
+  因为 .swiper-container 被设定为 overflow: hidden;
+  所以，为了能让分页器在 swiper 容器外显示，需要将 overflow 
+*/
+.icons >>> .swiper-container
+  overflow inherit
 .icons
   /*
     利用 padding-bottom 设置盒子高度，
@@ -55,9 +62,11 @@ export default {
     同时默认 box-sizing为content-box，
     所以 padding 值可以生效。
   */
-  overflow: hidden;
+  /* 防止页面抖动时，可以不用 overflow: hidden; */
   height: 0;
-  padding-bottom: 50%;
+  padding-bottom: 55%;
+  .swiper-pagination
+    bottom -.36rem
 
   .icon
     position: relative;

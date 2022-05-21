@@ -27,7 +27,7 @@ export default {
         // 允许循环轮播
         loop: true,
         // 自动播放
-        autoplay: 500,
+        autoplay: 3000,
         autoplayDisableOnInteraction : false,
         observer: true,
         observeParents: true
@@ -80,6 +80,10 @@ export default {
   .wrapper >>> .swiper-pagination
     bottom: .1rem
   .wrapper
+    /*
+			padding 的百分比基于父级元素的宽度。
+				如果父级元素没有设置宽度，则基于浏览器宽度。
+		*/
     overflow: hidden
     width 100%  // 将 wrapper 的宽度设置为整个页面的宽度
     height 0  // 高度的百分比以父级元素为准
