@@ -34,8 +34,8 @@
     color: #fff
     line-height $headerHeight
     .header-left
-      width: .64rem
-      float: left
+      width $backIconWidth
+      // float: left
       .back-icon
         text-align center
         font-size: $backIconFontSize
@@ -50,7 +50,7 @@
       padding-left .2rem
     .header-right
       padding: 0 .2rem 0 .2rem
-      float: right
+      // float: right
       text-align: center
       color #fff
       .arrow-icon

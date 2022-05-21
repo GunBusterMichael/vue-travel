@@ -23,7 +23,7 @@
     line-height $headerHeight
     text-align: center
     color: #fff
-    font-size: .32rem
+    font-size: $headerFontSize
     position relative
     .back-icon
       /*
@@ -34,5 +34,5 @@
       top 0
       font-size $backIconFontSize
       color #fff
-      width .64rem
+      width $backIconWidth
 </style>
