@@ -35,6 +35,7 @@ module.exports = {
       'styles': resolve('src/assets/styles'),
       'store': resolve('src/store'),
       'common': resolve('src/common'),
+      'static': resolve('static'),
     }
   },
   module: {

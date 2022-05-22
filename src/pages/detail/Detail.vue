@@ -36,7 +36,7 @@
     },
     methods: {
       getDetailInfo () {
-        axios.get('/api/detail.json', {
+        axios.get('/static/mock/detail.json', {
           params: {
             /*
               这个 id 是由 recommend 组件传递到路由的，告诉路由要跳转到与被点击的 recommend 组件 id 值对应的 detail 组件。

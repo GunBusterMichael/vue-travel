@@ -42,7 +42,8 @@
             用 proxyTable 进行代理，
             将以 /api 开头的请求代理到 /static/mock 上。
         */
-        axios.get('/api/index.json?city=' + this.$store.state.city)
+        // axios.get('/api/index.json?city=' + this.$store.state.city)
+        axios.get('/static/mock/index.json?city=' + this.$store.state.city)
           .then(this.getHomeInfoSucc)
       },
       /* 处理请求到的数据 */
