@@ -32,7 +32,9 @@
     height: $headerHeight
     background: $bgColor  // 引用变量
     color: #fff
+    height: $headerHeight
     line-height $headerHeight
+    // padding-top .1rem
     .header-left
       width $backIconWidth
       // float: left

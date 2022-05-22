@@ -6,10 +6,11 @@
       :key="item"
       :ref="item"
       @click="handleLetterClick"
-      @touchmove="handleTouchMove"
+      @touchmove.prevent="handleTouchMove"
     >
       {{ item }}
     </li>
+    <!-- 通过添加.prevent 阻止手指移动的默认事件。这样，在拖动字母检索时，整个页面不会跟着拖动 -->
   </ul>
 </template>
 

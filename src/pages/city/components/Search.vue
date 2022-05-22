@@ -6,6 +6,8 @@
         type="text"
         placeholder="请输入城市名或拼音"
         v-model="query"
+        @focus="handleInputFocus"
+        @blur="handleInputBlur"
       >
     </div>
     <div class="search-res" ref="searchResArea" v-show="query">
@@ -107,7 +109,7 @@
               }
             })
           }
-          /* 将res 赋值给 data 函数中的 resList */
+          /* 将 res 赋值给 data 函数中的 resList */
           this.resList = res
           /*
             判断是否找到了符合要求的数据
@@ -125,6 +127,18 @@
         this.$store.commit('changeCity', city)
         this.query = ''
         this.$router.push('/')
+      },
+
+      /*
+        在搜索框输入文字（获得焦点）后，会因为输入法，将字母检索顶上去，并显示在 header 和 search 上。
+        所以，要在输入框获得焦点时，将字母检索隐藏；
+              在输入框失去焦点时，将字母检索显示。
+      */
+      handleInputFocus () {
+        this.$emit('hiddenAlphabet', false)
+      },
+      handleInputBlur () {
+        this.$emit('showAlphabet', true)
       }
     },
 
@@ -134,7 +148,7 @@
         如果符合要求的城市过多，在一页中放不下，
         用户可以滑动符合要求的城市。
       */
-      this.Bscroll = new Bscroll(this.$refs.searchResArea)
+      this.Bscroll = new Bscroll(this.$refs.searchResArea, {click: true})
     }
   }
 </script>

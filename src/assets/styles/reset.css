@@ -196,7 +196,8 @@ sub {
 html {
   overflow-x: hidden;
   height: 100%;
-  font-size: 50px;  /* rem 相对于 50px 进行设置 */
+  font-size: 13.333333vw;
+  /* font-size: 50px;  rem 相对于 50px 进行设置 */
   -webkit-tap-highlight-color: transparent;
 }
 

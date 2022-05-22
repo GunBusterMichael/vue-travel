@@ -1,7 +1,10 @@
 <template>
   <div>
     <city-header></city-header>
-    <city-search :cities="cities"></city-search>
+    <city-search :cities="cities"
+      @hiddenAlphabet="handleHiddenAlphabet"
+      @showAlphabet="handleShowAlphabet"
+    ></city-search>
     <city-list
       :cities="cities"
       :hotCities="hotCities"
@@ -15,6 +18,7 @@
     <city-alphabet
       :cities="cities"
       @change="handleLetterChange"
+      v-show="isShowAlphabet"
     >
     </city-alphabet>
   </div>
@@ -44,7 +48,10 @@
         cities: {},
 
         /* 保存从子组件 alphabet 传来的，当前被点击的字母 */
-        letter: ''
+        letter: '',
+
+        /* 保存是否显示字母检索的状态 */
+        isShowAlphabet: true
       }
     },
     methods: {
@@ -65,6 +72,14 @@
       // letter 为子组件传递过来的值（被点击的字母）
       handleLetterChange (letter) {
         this.letter = letter
+      },
+      
+      handleHiddenAlphabet () {
+        this.isShowAlphabet = false
+      },
+
+      handleShowAlphabet () {
+        this.isShowAlphabet = true
       }
     },
 
