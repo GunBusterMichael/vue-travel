@@ -57,7 +57,7 @@
     methods: {
       // 封装 axios 请求
       getCityInfo () {
-        axios.get('/static/mock/city.json')
+        axios.get('/mock/city.json')
         .then(this.handleGetCityInfoSucc)
       },
       handleGetCityInfoSucc (res) {

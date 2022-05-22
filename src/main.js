@@ -23,11 +23,18 @@ Vue.config.productionTip = false
 // 使用 vue-awesome-swiper 插件
 Vue.use(VueAwesomeSwiper)
 
-/* eslint-disable no-new */
+// 模板语法
+// new Vue({
+//   el: '#app',
+//   router,
+//   store,
+//   components: { App },
+//   template: '<App/>'
+// })
+
+// runtime-only
 new Vue({
-  el: '#app',
   router,
   store,
-  components: { App },
-  template: '<App/>'
-})
+  render: h => h(App)
+}).$mount('#app')
