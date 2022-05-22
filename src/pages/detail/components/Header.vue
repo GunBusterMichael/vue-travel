@@ -68,7 +68,7 @@
         在组件被展示时，为 window 全局变量注册页面滚动事件。
         只要页面滚动了，就调用 this.handleScroll 方法，来判断如何显示 header-fixed
       */
-      console.log('ac');
+      // console.log('ac');
       window.addEventListener('scroll', this.handleScroll)
     },
     /* 当被 keep-alive 缓存的组件失活时调用。 */
@@ -78,7 +78,7 @@
           因为这些组件都处于一个窗口中，所以在一个组件中注册了全局事件后，在别的页面中也会执行这个全局事件。
           所以在该组件失活时，要将在该组件中注册的全局事件解绑。
       */
-      console.log('deac');
+      // console.log('deac');
       window.removeEventListener('scroll', this.handleScroll)
     }
   }
