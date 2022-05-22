@@ -5,7 +5,7 @@
         点击 gallary 黑色背景时，关闭 gallary；
         点击 swiper 区域时，不关闭 gallary。
   -->
-  <div class="container" @click.self="handleGallaryClick">
+  <div class="container" @click="handleGallaryClick">
     <div class="wrapper">
       <swiper :options="swiperOptions">
         <!-- slides -->
@@ -29,7 +29,7 @@
           paginationType: 'fraction',
           observeParents: true,
           observer: true,
-          loop: true
+          // loop: true
         }
       }
     },

@@ -7,22 +7,26 @@
         <div class="banner-number"><span class="iconfont">&#xe626;</span>{{gallaryImgs.length}}</div>
       </div>
     </div>
-    <common-gallary
-      :imgs="gallaryImgs"
-      v-if="isShowGallary"
-      @closeGallary="handleCloseGallary"
-    ><!-- @子组件传值到父组件的事件名='子组件传值事件被触发后，父组件要使用的事件' -->
-    </common-gallary>
+    <fade-animation>
+      <common-gallary
+        :imgs="gallaryImgs"
+        v-if="isShowGallary"
+        @closeGallary="handleCloseGallary"
+      ><!-- @子组件传值到父组件的事件名='子组件传值事件被触发后，父组件要使用的事件' -->
+      </common-gallary>
+    </fade-animation>
   </div>
 </template>
 
 <script>
   import CommonGallary from 'common/gallary/Gallary'
+  import FadeAnimation from 'common/fade/FadeAnimation'
 
   export default {
     name: "DetailBanner",
     components: {
-      CommonGallary
+      CommonGallary,
+      FadeAnimation
     },
     props: {
       sightName: String,

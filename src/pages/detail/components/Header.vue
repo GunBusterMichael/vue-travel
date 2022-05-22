@@ -40,7 +40,7 @@
       */
       handleScroll () {
         /* 保存当前页面的滚动距离 */
-        const top = document.documentElement.scrollTop
+        const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
         /* 如果滚动距离超过 60 px */
         if (top > 60) {
           /* 将 fixed 渲染到页面上，将 abs 从 DOM 中删除 */
