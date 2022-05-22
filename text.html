@@ -1,27 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .outer {
-      background-color: #000;
-      width: 500px;
-      height: 0;
-      padding-bottom: 50%;
+    body,
+    html {
+      height: 100%;
+      padding: 0;
+      margin: 0;
     }
-    .inner {
+
+    /*左边栏左浮动*/
+    .left {
+      float: left;
+      height: 100%;
       width: 100px;
-      height: 100px;
-      background-color: #b8a6d9;
+      background: #ff69b4;
+    }
+
+    /*中间栏自适应*/
+    .main {
+      height: 100%;
+      margin: 0 200px 0 100px;
+      background: #659;
+    }
+
+    /*右边栏右浮动*/
+    .right {
+      float: right;
+      height: 100%;
+      width: 200px;
+      background: #ff69b4;
+    }
+
+    .text {
+      background-color: green;
+      width: 100%;
+      height: 200px;
     }
   </style>
 </head>
+
 <body>
-  <div class="outer">
-    <div class="inner">55555</div>
+  <div class="container">
+    <div class="left">
+      <div class="text"></div>
+    </div>
+    <div class="right">
+      <div class="text"></div>
+    </div>
+    <div class="main">Main</div>
   </div>
 </body>
+
 </html>
