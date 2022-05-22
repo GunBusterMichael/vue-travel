@@ -89,6 +89,14 @@
       this.scroll = new Bscroll(this.$refs.wrapper, {
         click: true  // 让 wrapper 可已被点击
       })
+    },
+
+    /*
+      由于 keep-alive，重新进入 city 页面后，页面会保持退出时的 scrollY。
+      所以，要在 list 组件被激活时，将页面滚动到顶部。
+    */
+    activated () {
+      this.scroll.scrollTo(0, 0)
     }
   }
 </script>
