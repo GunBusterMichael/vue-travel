@@ -20,6 +20,10 @@ const routes = [
     component: City
   },
   {
+    /*
+      :id 接收 recommend 组件传来的 id 参数
+      点击某个推荐的时候，会按照它的 id 值，进行路由跳转，跳转到 detail 组件
+    */
     path: '/detail/:id',
     name: 'Detail',
     component: Detail
@@ -27,5 +31,10 @@ const routes = [
 ]
 
 export default new Router({
-  routes
+  routes,
+
+  /* 让页面切换的时候始终回到最顶部 */
+  scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
