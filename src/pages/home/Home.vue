@@ -14,7 +14,7 @@
   import HomeIcons from './components/Icons.vue'
   import HomeRecommend from './components/Recommend.vue'
   import HomeWeekend from './components/Weekend.vue'
-  import axios from 'axios'
+  import getHomeInfo from 'network/api/home.js'
 
   export default {
     name: "Home",
@@ -35,31 +35,21 @@
       }
     },
     methods: {
-      /* 利用 axios 请求数据 */
-      getHomeInfo () {
-        /*
-          在 config/index.js 中，
-            用 proxyTable 进行代理，
-            将以 /api 开头的请求代理到 /public/mock 上。
-        */
-        // axios.get('/api/index.json?city=' + this.$store.state.city)
-        axios.get('/mock/index.json?city=' + this.$store.state.city)
-          .then(this.getHomeInfoSucc)
-      },
-      /* 处理请求到的数据 */
-      getHomeInfoSucc (res) {
-        res = res.data  // 将真正需要的 data 数据赋值到 res 中
-        /*
-          ret 若为 true，则代表返回数据成功。
-            下面的 if 用来判断 ret 是否为 true，并且 data 不为空值。
-        */
-        if (res.ret && res.data) {
-          const data = res.data  // 将请求过来的，包含页面数据的 data 赋值到 data 中
-          this.swiperList = data.swiperList
-          this.iconList = data.iconList
-          this.recommendList = data.recommendList
-          this.weekendList = data.weekendList
+      async initHome () {
+        // 向这个网站发送请求 http://localhost:8080/mock/index.json?city=beijing
+        const params = {
+          city: this.$store.state.city
         }
+        /*
+          getHomeInfo 返回一个 axios 实例，
+          await 会等 axios 实例（promise）实例执行完后，将返回的数据赋值给 data。
+        */
+        const data = await getHomeInfo(params)
+        // console.log(data);
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
       }
     },
 
@@ -71,21 +61,21 @@
     */
     mounted () {
       this.lastCity = this.$store.state.city
-      this.getHomeInfo()
+      this.initHome()
     },
     /*
       在开启了 keep-alive 后，组件被重新加载时，会产生一个新的生命周期函数 activated。
       在生命周期函数 activated 中判断，当前城市是否与之前的城市相同。
       如果不相同，则重新发送 axios 请求，并将当前城市保存为上一个城市。
     */
-    /* 
+    /*
       如果开启了 keep-alive，在第一次加载组件时，会调用 mounted 和 activated。
       如果再次加载，之前加载过的组件，则只会调用 activated 方法。
     */
     activated () {
       if (this.lastCity !== this.$store.state.city) {
         this.lastCity = this.$store.state.city
-        this.getHomeInfo()
+        this.initHome()
       }
     }
   }

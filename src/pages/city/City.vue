@@ -25,11 +25,11 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import CityHeader from './components/Header.vue'
   import CitySearch from './components/Search.vue'
   import CityList from './components/List.vue'
   import CityAlphabet from './components/Alphabet.vue'
+  import getCityInfo from 'network/api/city'
 
   export default {
     name: "City",
@@ -56,17 +56,10 @@
     },
     methods: {
       // 封装 axios 请求
-      getCityInfo () {
-        axios.get('/mock/city.json')
-        .then(this.handleGetCityInfoSucc)
-      },
-      handleGetCityInfoSucc (res) {
-        res = res.data
-        if (res.ret && res.data) {
-          const data = res.data
-          this.cities = data.cities
-          this.hotCities = data.hotCities
-        }
+      async initCity () {
+        const data = await getCityInfo()
+        this.cities = data.cities
+        this.hotCities = data.hotCities
       },
 
       // letter 为子组件传递过来的值（被点击的字母）
@@ -85,7 +78,7 @@
 
     /* 在该组件被挂载到 DOM 上时，向服务器请求数据 */
     mounted () {
-      this.getCityInfo()
+      this.initCity()
     }
   }
 </script>

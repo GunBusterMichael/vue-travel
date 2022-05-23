@@ -17,7 +17,7 @@
   import DetailBanner from './components/Banner.vue'
   import DetailHeader from './components/Header.vue'
   import DetailList from './components/List.vue'
-  import axios from 'axios'
+  import getDetailInfo from 'network/api/detail'
 
   export default {
     name: "Detail",
@@ -35,30 +35,27 @@
       }
     },
     methods: {
-      getDetailInfo () {
-        axios.get('/mock/detail.json', {
-          params: {
-            /*
-              这个 id 是由 recommend 组件传递到路由的，告诉路由要跳转到与被点击的 recommend 组件 id 值对应的 detail 组件。
-              detail 组件通过 this.$route.params.id 获取到自己的 id 值，并用 id 值获取自己的后台数据。
-            */
-            id: this.$route.params.id
-          }
-        }).then(this.handleGetDataSucc)
-      },
-      handleGetDataSucc (res) {
-        res = res.data
-        if (res.ret && res.data) {
-          const data = res.data
-          this.sightName = data.sightName
-          this.bannerImg = data.bannerImg
-          this.gallaryImgs = data.gallaryImgs
-          this.list = data.categoryList
+      async initDetail () {
+        /*
+          在 Home 中的 Recommend 组件中，有许多的推荐景点。
+          点击这些景点后，会展示对应的 detail 组件。
+          detail 组件根据被点击的景点的 id 来获取相应景点的数据。
+          景点 id 通过 Recommend 组件中的 :to="'/detail/' + item.id" 传递到路由中。
+          路由会将页面跳转到 /detail/0001（0001是id）中，显示 detail 组件。
+          detail 组件通过 $route.params.id 获取当前通过路由传递过来的 id 值，并通过 id 值从后端获取对应数据。
+        */
+        const params = {
+          id: this.$route.params.id
         }
+        const data = await getDetailInfo(params)
+        this.sightName = data.sightName
+        this.bannerImg = data.bannerImg
+        this.gallaryImgs = data.gallaryImgs
+        this.list = data.categoryList
       }
     },
     activated () {
-      this.getDetailInfo()
+      this.initDetail()
     }
   }
 </script>
