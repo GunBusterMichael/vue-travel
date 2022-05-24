@@ -53,7 +53,7 @@ export default {
   所以，为了能让分页器在 swiper 容器外显示，需要将 overflow 
 */
 .icons >>> .swiper-container
-  overflow inherit
+  overflow visible  // 让轮播图底部小圆点展示出来。swiper 默认 overflow: hidden
 .icons
   /*
     利用 padding-bottom 设置盒子高度，
@@ -65,6 +65,7 @@ export default {
   /* 防止页面抖动时，可以不用 overflow: hidden; */
   height: 0;
   padding-bottom: 55%;
+  overflow: hidden
   .swiper-pagination
     bottom -.36rem
 
